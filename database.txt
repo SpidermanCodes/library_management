@@ -1,0 +1,28 @@
+CREATE DATABASE library;
+---------------------------------------------------------------
+USE library;
+---------------------------------------------------------------
+CREATE TABLE admin (
+    username VARCHAR(50) NOT NULL PRIMARY KEY,
+    password VARCHAR(255) NOT NULL
+);
+---------------------------------------------------------------
+INSERT INTO admin (username, password) VALUES
+('admin', 'admin');
+---------------------------------------------------------------
+CREATE TABLE books (
+    book_id VARCHAR(50) NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL
+);
+---------------------------------------------------------------
+CREATE TABLE borrowers (
+    borrower_id VARCHAR(50) NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    borrowed_book_id VARCHAR(50) NOT NULL,
+    return_date DATE NOT NULL,
+    FOREIGN KEY (borrowed_book_id) REFERENCES books(book_id)
+);
+---------------------------------------------------------------
